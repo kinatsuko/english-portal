@@ -1,12 +1,12 @@
 "use client";
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export default function EnglishLearningPortal() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (e) => {
+ const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (email === 'teacher@gmail.com' && password === '123456') {
