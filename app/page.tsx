@@ -17,14 +17,35 @@ export default function EnglishLearningPortal() {
     }
   };
   const menu = [
-    'HOME',
-    'NOTES',
-    'VIDEOS',
-    'EXERCISES',
-    'MATERIALS',
-    'ANNOUNCEMENTS',
-    'CONTACT',
-  ];
+  {
+    name: 'HOME',
+    link: '/',
+  },
+  {
+    name: 'NOTES',
+    link: '/notes',
+  },
+  {
+    name: 'VIDEOS',
+    link: '/videos',
+  },
+  {
+    name: 'EXERCISES',
+    link: '/exercises',
+  },
+  {
+    name: 'MATERIALS',
+    link: '/materials',
+  },
+  {
+    name: 'ANNOUNCEMENTS',
+    link: '/announcements',
+  },
+  {
+    name: 'CONTACT',
+    link: '/contact',
+  },
+];
 
   const cards = [
     {
@@ -162,14 +183,14 @@ const sections = [
 
           <nav className="flex flex-wrap gap-6 mt-4 md:mt-0 text-sm font-semibold tracking-wide">
             {menu.map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="hover:text-blue-200 transition duration-200"
-              >
-                {item}
-              </a>
-            ))}
+  <Link
+    key={item.name}
+    href={item.link}
+    className="hover:text-blue-200 transition duration-200"
+  >
+    {item.name}
+  </Link>
+))}
           </nav>
         </div>
       </header>
