@@ -188,15 +188,7 @@ const sections = [
               <p className="text-sm uppercase tracking-widest">Learning Portal</p>
             </div>
           </div>
-<button
-  onClick={() => {
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(false);
-  }}
-  className="bg-red-600 px-4 py-2 rounded-xl text-white"
->
-  Logout
-</button>
+
           <nav className="flex flex-wrap gap-6 mt-4 md:mt-0 text-sm font-semibold tracking-wide">
             {menu.map((item) => (
   <Link
@@ -207,6 +199,16 @@ const sections = [
     {item.name}
   </Link>
 ))}
+
+<button
+  onClick={() => {
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+  }}
+  className="bg-red-600 px-4 py-2 rounded-xl text-white"
+>
+  Logout
+</button>
           </nav>
         </div>
       </header>
