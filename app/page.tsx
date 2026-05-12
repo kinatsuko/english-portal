@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 export default function EnglishLearningPortal() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -10,7 +11,8 @@ export default function EnglishLearningPortal() {
   const loggedIn = localStorage.getItem("isLoggedIn");
 
   if (loggedIn === "true") {
-    setIsLoggedIn(true);
+    localStorage.setItem("isLoggedIn", "true");
+setIsLoggedIn(true);
   }
 }, []);
 
@@ -179,39 +181,7 @@ const sections = [
   return (
     <div className="min-h-screen bg-gray-100 font-sans text-gray-800">
       {/* Header */}
-      <header className="bg-gradient-to-r from-blue-950 to-blue-800 text-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="text-4xl">📚</div>
-            <div>
-              <h1 className="text-2xl font-bold tracking-wide">ENGLISH</h1>
-              <p className="text-sm uppercase tracking-widest">Learning Portal</p>
-            </div>
-          </div>
-
-          <nav className="flex flex-wrap gap-6 mt-4 md:mt-0 text-sm font-semibold tracking-wide">
-            {menu.map((item) => (
-  <Link
-    key={item.name}
-    href={item.link}
-    className="hover:text-blue-200 transition duration-200"
-  >
-    {item.name}
-  </Link>
-))}
-
-<button
-  onClick={() => {
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(false);
-  }}
-  className="bg-red-600 px-4 py-2 rounded-xl text-white"
->
-  Logout
-</button>
-          </nav>
-        </div>
-      </header>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-white">
