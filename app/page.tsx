@@ -1,17 +1,25 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from "next/link";
 
 export default function EnglishLearningPortal() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  useEffect(() => {
+  const loggedIn = localStorage.getItem("isLoggedIn");
+
+  if (loggedIn === "true") {
+    setIsLoggedIn(true);
+  }
+}, []);
 
  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (email === 'teacher@gmail.com' && password === '123456') {
-      setIsLoggedIn(true);
+      localStorage.setItem("isLoggedIn", "true");
+setIsLoggedIn(true);
     } else {
       alert('Invalid email or password');
     }
@@ -180,7 +188,15 @@ const sections = [
               <p className="text-sm uppercase tracking-widest">Learning Portal</p>
             </div>
           </div>
-
+<button
+  onClick={() => {
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+  }}
+  className="bg-red-600 px-4 py-2 rounded-xl text-white"
+>
+  Logout
+</button>
           <nav className="flex flex-wrap gap-6 mt-4 md:mt-0 text-sm font-semibold tracking-wide">
             {menu.map((item) => (
   <Link
