@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import Link from "next/link";
 
 export default function EnglishLearningPortal() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -52,36 +53,40 @@ export default function EnglishLearningPortal() {
     },
   ];
 
-  const sections = [
-    {
-      title: 'NOTES',
-      points: ['Grammar', 'Vocabulary', 'Writing'],
-      button: 'Explore',
-      color: 'bg-blue-700',
-      icon: '📖',
-    },
-    {
-      title: 'VIDEOS',
-      points: ['Watch selected videos', 'Improve English skills'],
-      button: 'Explore',
-      color: 'bg-red-600',
-      icon: '▶️',
-    },
-    {
-      title: 'EXERCISES',
-      points: ['Practice exercises', 'Interactive tasks'],
-      button: 'Explore',
-      color: 'bg-green-600',
-      icon: '✍️',
-    },
-    {
-      title: 'MATERIALS',
-      points: ['Worksheets', 'Sample essays', 'Downloads'],
-      button: 'Explore',
-      color: 'bg-yellow-500',
-      icon: '📂',
-    },
-  ];
+const sections = [
+  {
+    title: 'NOTES',
+    points: ['Grammar', 'Vocabulary', 'Writing'],
+    button: 'Explore',
+    link: '/notes',
+    color: 'bg-blue-700',
+    icon: '📖',
+  },
+  {
+    title: 'VIDEOS',
+    points: ['Watch selected videos', 'Improve English skills'],
+    button: 'Explore',
+    link: '/videos',
+    color: 'bg-red-600',
+    icon: '▶️',
+  },
+  {
+    title: 'EXERCISES',
+    points: ['Practice exercises', 'Interactive tasks'],
+    button: 'Explore',
+    link: '/exercises',
+    color: 'bg-green-600',
+    icon: '✍️',
+  },
+  {
+    title: 'MATERIALS',
+    points: ['Worksheets', 'Sample essays', 'Downloads'],
+    button: 'Explore',
+    link: '/materials',
+    color: 'bg-yellow-500',
+    icon: '📂',
+  },
+];
 
   if (!isLoggedIn) {
     return (
@@ -245,11 +250,13 @@ export default function EnglishLearningPortal() {
                 ))}
               </ul>
 
-              <button
-                className={`w-full ${section.color} text-white py-2 rounded-xl font-semibold hover:opacity-90 transition`}
-              >
-                {section.button}
-              </button>
+              <Link href={section.link}>
+  <button
+    className={`w-full ${section.color} text-white py-2 rounded-xl font-semibold hover:opacity-90 transition`}
+  >
+    {section.button}
+  </button>
+</Link>
             </div>
           ))}
         </div>
