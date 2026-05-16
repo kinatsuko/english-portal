@@ -1,61 +1,10 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 export default function EnglishLearningPortal() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  useEffect(() => {
-  const loggedIn = localStorage.getItem("isLoggedIn");
-
-  if (loggedIn === "true") {
-    localStorage.setItem("isLoggedIn", "true");
-setIsLoggedIn(true);
-  }
-}, []);
-
- const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (email === 'teacher@gmail.com' && password === '123456') {
-      localStorage.setItem("isLoggedIn", "true");
-setIsLoggedIn(true);
-    } else {
-      alert('Invalid email or password');
-    }
-  };
-  const menu = [
-  {
-    name: 'HOME',
-    link: '/',
-  },
-  {
-    name: 'NOTES',
-    link: '/notes',
-  },
-  {
-    name: 'VIDEOS',
-    link: '/videos',
-  },
-  {
-    name: 'EXERCISES',
-    link: '/exercises',
-  },
-  {
-    name: 'MATERIALS',
-    link: '/materials',
-  },
-  {
-    name: 'ANNOUNCEMENTS',
-    link: '/announcements',
-  },
-  {
-    name: 'CONTACT',
-    link: '/contact',
-  },
-];
 
   const cards = [
     {
@@ -119,66 +68,9 @@ const sections = [
   },
 ];
 
-  if (!isLoggedIn) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-950 to-blue-700 px-4">
-        <div className="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-md">
-          <div className="text-center mb-8">
-            <div className="text-6xl mb-4">📚</div>
-            <h1 className="text-3xl font-bold text-blue-900">
-              English Learning Portal
-            </h1>
-            <p className="text-gray-500 mt-2">
-              Login to continue
-            </p>
-          </div>
-
-          <form onSubmit={handleLogin} className="space-y-5">
-            <div>
-              <label className="block mb-2 font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            <div>
-              <label className="block mb-2 font-medium text-gray-700">
-                Password
-              </label>
-              <input
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-blue-900 hover:bg-blue-800 text-white py-3 rounded-xl font-semibold transition"
-            >
-              Login
-            </button>
-          </form>
-
-          <div className="mt-6 text-sm text-gray-500 text-center">
-            Demo Login:<br />
-            Email: teacher@gmail.com<br />
-            Password: 123456
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
+     <ProtectedRoute>
     <div className="min-h-screen bg-gray-100 font-sans text-gray-800">
       {/* Header */}
       <Navbar />
@@ -346,5 +238,6 @@ const sections = [
         </div>
       </footer>
     </div>
+    </ProtectedRoute>
   );
 }
